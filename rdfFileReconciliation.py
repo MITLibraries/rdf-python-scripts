@@ -20,11 +20,11 @@ args = parser.parse_args()
 if args.rdfFileName:
     rdfFileName = args.rdfFileName
 else:
-    rdfFileName = raw_input('Enter the RDF file to be reconciled against (include the extension): ')
+    rdfFileName = input('Enter the RDF file to be reconciled against (include the extension): ')
 if args.fileName:
     fileName = args.fileName
 else:
-    fileName = raw_input('Enter the CSV file of headings to reconcile (including \'.csv\'): ')
+    fileName = input('Enter the CSV file of headings to reconcile (including \'.csv\'): ')
 if args.threshold:
     threshold = int(args.threshold)
 else:
@@ -63,9 +63,9 @@ for row in results:
 #create lists and csv files
 completeNearMatches = []
 completeExactMatches = []
-f=csv.writer(open(os.path.join('reconciliationResults','rdfExactMatches'+date+'.csv'),'wb'))
+f=csv.writer(open(os.path.join('reconciliationResults','rdfExactMatches'+date+'.csv'),'w'))
 f.writerow(['originalLabel']+['standardizedLabel']+['uri']+['date'])
-f2=csv.writer(open(os.path.join('reconciliationResults','rdfNearAndNonMatches'+date+'.csv'),'wb'))
+f2=csv.writer(open(os.path.join('reconciliationResults','rdfNearAndNonMatches'+date+'.csv'),'w'))
 f2.writerow(['originalLabel']+['standardizedLabel']+['uri']+['date'])
 
 #create counters
@@ -83,7 +83,7 @@ with open(fileName) as csvfile:
     for row in reader:
         label = row['name']
         rowCount -= 1
-        print 'Rows remaining: ', rowCount
+        print('Rows remaining: ', rowCount)
         newHeadingsCount += 1
         preCount = len(completeNearMatches)
         for label2, uri in existingLabels.items():
@@ -114,12 +114,12 @@ with open(fileName) as csvfile:
 for match in completeNearMatches:
     f2.writerow([match[0]]+[match[1]]+[match[2]]+[match[3]])
 
-print 'Total headings reconciled: ', newHeadingsCount
-print 'Exact match headings: ', exactMatchNewHeadings
-print 'Near match headings: ', nearMatchNewHeadings
-print 'Unmatched headings: ', nonmatchedNewHeadings
+print('Total headings reconciled: ', newHeadingsCount)
+print('Exact match headings: ', exactMatchNewHeadings)
+print('Near match headings: ', nearMatchNewHeadings)
+print('Unmatched headings: ', nonmatchedNewHeadings)
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)
 h, m = divmod(m, 60)
-print 'Total script run time: ', '%d:%02d:%02d' % (h, m, s)
+print('Total script run time: ', '%d:%02d:%02d' % (h, m, s))
