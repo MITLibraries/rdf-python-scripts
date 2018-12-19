@@ -39,7 +39,7 @@ def retrievePrefLabel(uri):
     q = prepareQuery('SELECT ?o ?d WHERE {?s skos:prefLabel ?o. ?s dc:date ?d. }', initNs = {'skos': SKOS, 'dc': DC})
     results = g.query(q, initBindings={'s': URIRef(uri)})
     for row in results:
-        prefLabel = row[0].encode('utf-8')
+        prefLabel = row[0]
         date = row[1]
     global match
     match = [label, str(prefLabel), uri, date]
@@ -58,7 +58,7 @@ existingLabels = {}
 q = prepareQuery('SELECT ?s ?o WHERE { ?s skos:prefLabel|skos:altLabel ?o }', initNs = {'skos': SKOS})
 results = g.query(q)
 for row in results:
-    existingLabels[str(row[1].encode('utf-8'))] = str(row[0])
+    existingLabels[str(row[1])] = str(row[0])
 
 #create lists and csv files
 completeNearMatches = []

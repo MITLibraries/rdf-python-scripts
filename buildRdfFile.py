@@ -65,7 +65,7 @@ print(g.serialize(format='n3'))
 f=csv.writer(open('allTriples'+str(date)+'.csv','w'))
 f.writerow(['subject']+['predicate']+['object'])
 for s, p, o in g:
-    f.writerow([s.encode('utf-8')]+[p.encode('utf-8')]+[o.encode('utf-8')])
+    f.writerow([s]+[p]+[o])
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)

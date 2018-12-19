@@ -48,7 +48,7 @@ uriNums = []
 results = g.query(q)
 for row in results:
     uriNums.append(str(row[0]).replace('http://www.library.jhu.edu/identities/',''))
-    existingLabels[str(row[1].encode('utf-8'))] = str(row[0])
+    existingLabels[str(row[1])] = str(row[0])
 
 #set uri starting point
 uriNum = int(max(uriNums))
@@ -93,7 +93,7 @@ f.writerow(['replacedValue']+['replacementValue'])
 q = prepareQuery('SELECT ?altLabel ?prefLabel WHERE { ?s skos:prefLabel ?prefLabel. ?s skos:altLabel ?altLabel }', initNs = {'skos': SKOS})
 results = g.query(q)
 for row in results:
-    f.writerow([row[0].encode('utf-8')]+[row[1].encode('utf-8')])
+    f.writerow([row[0]]+[row[1]])
 
 #extract prefLabels to csv
 f=csv.writer(open(os.path.join('prefLabels','prefLabels'+timeStamp+'.csv'),'w'))
@@ -101,13 +101,13 @@ f.writerow(['uri']+['prefLabel'])
 q = prepareQuery('SELECT ?s ?prefLabel WHERE { ?s skos:prefLabel ?prefLabel }', initNs = {'skos': SKOS})
 results = g.query(q)
 for row in results:
-    f.writerow([row[0].encode('utf-8')]+[row[1].encode('utf-8')])
+    f.writerow([row[0]]+[row[1]])
 
 #extract all triples to csv
 f=csv.writer(open(os.path.join('allTriples','allTriples'+timeStamp+'.csv'),'w'))
 f.writerow(['subject']+['predicate']+['object'])
 for s, p, o in g:
-    f.writerow([s.encode('utf-8')]+[p.encode('utf-8')]+[o.encode('utf-8')])
+    f.writerow([s]+[p]+[o])
 
 elapsedTime = time.time() - startTime
 m, s = divmod(elapsedTime, 60)
