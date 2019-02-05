@@ -1,6 +1,6 @@
 # rdf
 
-Note: Upgraded to Python 3 in 02/2019. The Python 2.x version can be downloaded [here](https://github.com/ehanson8/rdf/releases)
+*Note*: Upgraded to Python 3 in 02/2019. The Python 2.x version can be downloaded [here](https://github.com/ehanson8/rdf/releases)
 
 #### [addTriplesToRdfFile.py](addTriplesToRdfFile.py)
 Based on user input, adds triples to a specified RDF file from a specified CSV file. The script also produces CSV files of all triples in the RDF file, all skos:prefLabels in the RDF file, and a CSV crosswalk of altLabels to prefLabels for potential find and replace operations.
