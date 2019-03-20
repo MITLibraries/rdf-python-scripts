@@ -18,9 +18,9 @@ reconcile (including \'.csv\'). optional - if not provided, the script will \
 ask for input')
 parser.add_argument('-d', '--directory', help='the directory for the input and \
 output files. optional - if not provided, the script will assume null')
-parser.add_argument('-t', '--threshold', help='the threshold (e.g. \'90\' means \
- the strings are 90% similar and 10% different ). optional - if not provided, \
- the script will default to 70')
+parser.add_argument('-t', '--threshold', help='the threshold (e.g. \'90\' \
+means the strings are 90% similar and 10% different ). optional - if not \
+provided, the script will default to 70')
 args = parser.parse_args()
 
 if args.rdfFileName:
